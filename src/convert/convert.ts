@@ -1,14 +1,13 @@
-import { map, pipe, reduce, slice } from "ramda"
-import flatten from "ramda/es/flatten"
+import { flatten, includes, map, pipe, reduce, slice, startsWith } from "ramda"
 import splitByNewLine from "../utils/splitByNewLine"
 import filterEmptyLines from "./utils/filterEmptyLines"
 import joinByNewLine from "./utils/joinByNewLine"
 import splitByLeadingNonSpaceChar from "./utils/splitByLeadingNonSpaceChar"
 
 const convert = (s: string) => {
-  if (s.startsWith("    ")) {
+  if (startsWith("    ")(s)) {
     return toArray(s)
-  } else if (s.includes("\n")) {
+  } else if (includes("\n")(s)) {
     return toObject(s)
   } else {
     return s
