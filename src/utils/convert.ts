@@ -1,10 +1,10 @@
 import { pipe } from "ramda"
-import { attach } from "../splitAndAttach"
+import convert from "../convert"
 import prettify from "./prettify"
 import spacesToTabs from "./spacesToTabs"
 
 export default pipe(
   spacesToTabs,
-  attach,
+  convert,
   prettify(4),
 )
