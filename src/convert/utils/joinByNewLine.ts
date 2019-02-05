@@ -1,3 +1,3 @@
 import { join } from "ramda"
 
-export default join("/n")
+export default join("\n")
