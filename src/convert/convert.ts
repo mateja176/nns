@@ -1,7 +1,8 @@
-import { flatten, includes, map, pipe, reduce, startsWith } from "ramda"
+import { includes, map, pipe, reduce, startsWith } from "ramda"
 import slice from "../utils/slice"
 import splitByNewLine from "../utils/splitByNewLine"
 import filterEmptyLines from "./utils/filterEmptyLines"
+import flatten from "./utils/flatten"
 import joinByNewLine from "./utils/joinByNewLine"
 import splitByLeadingNonSpaceChar from "./utils/splitByLeadingNonSpaceChar"
 
@@ -34,13 +35,11 @@ const toArray = pipe(
     return [value, joinByNewLine(values)]
   }),
   flatten,
-  // @ts-ignore
   filterEmptyLines,
   map(convert),
 )
 
 export const toValue = pipe(
-  // @ts-ignore
   map(slice(2)(Infinity)),
   joinByNewLine,
   convert,
