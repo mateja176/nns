@@ -29,4 +29,12 @@ a
 `),
     ).toEqual({ a: { b: "c" } })
   })
+  test("It should return an nested array", () => {
+    expect(
+      convert(`
+    a
+        b
+`),
+    ).toEqual(["a", ["b"]])
+  })
 })
