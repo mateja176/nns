@@ -28,9 +28,10 @@ indentation.onkeydown = e => {
       setValue(`${precedingText}\t${succeedingText}`)(inc(selectionStart))
       break
     case "Enter":
-      const indentation = getIndentationFor(
-        dec(splitByNewLine(succeedingText).length),
-      )(splitByNewLine(value))
+      const indentation =
+        getIndentationFor(dec(splitByNewLine(succeedingText).length))(
+          splitByNewLine(value),
+        ) || ""
 
       setValue(`${precedingText}\n${indentation}${succeedingText}`)(
         selectionStart + 1 + indentation.length,
