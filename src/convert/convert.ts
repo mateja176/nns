@@ -1,25 +1,30 @@
-import { flatten, includes, map, pipe, reduce, slice, startsWith } from "ramda"
+import { flatten, includes, map, pipe, reduce, startsWith } from "ramda"
+import slice from "../utils/slice"
 import splitByNewLine from "../utils/splitByNewLine"
 import filterEmptyLines from "./utils/filterEmptyLines"
 import joinByNewLine from "./utils/joinByNewLine"
 import splitByLeadingNonSpaceChar from "./utils/splitByLeadingNonSpaceChar"
 
-const convert = (s: string) => {
-  if (startsWith("    ")(s)) {
-    return toArray(s)
-  } else if (includes("\n")(s)) {
-    return toObject(s)
-  } else {
-    return s
-  }
-}
+const convert = pipe(
+  splitByNewLine,
+  filterEmptyLines,
+  joinByNewLine,
+  (s: string) => {
+    if (startsWith("    ")(s)) {
+      return toArray(s)
+    } else if (includes("\n")(s)) {
+      return toObject(s)
+    } else {
+      return s
+    }
+  },
+)
 
 export default convert
 
 const toArray = pipe(
   splitByNewLine,
   filterEmptyLines,
-  // @ts-ignore
   map(slice(4)(Infinity)),
   joinByNewLine,
   splitByLeadingNonSpaceChar,

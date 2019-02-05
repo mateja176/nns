@@ -11,4 +11,11 @@ a
   b`),
     ).toEqual({ a: "b" })
   })
+  test("It should return an array", () => {
+    expect(
+      convert(`
+    a
+    b`),
+    ).toEqual(["a", "b"])
+  })
 })
