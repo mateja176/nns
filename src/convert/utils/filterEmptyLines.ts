@@ -1,6 +1,4 @@
-import { filter, map, pipe, trim } from "ramda"
+import { trim } from "ramda"
 
-export default pipe(
-  map(trim),
-  filter(Boolean),
-)
+// https://github.com/DefinitelyTyped/DefinitelyTyped/issues/25581
+export default (a: string[]) => a.filter((s: string) => Boolean(trim(s)))
