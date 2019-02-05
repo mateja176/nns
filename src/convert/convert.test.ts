@@ -9,6 +9,6 @@ describe("Convert text to JSON", () => {
       convert(`
 a
   b`),
-    ).toBe({ a: "b" })
+    ).toEqual({ a: "b" })
   })
 })
