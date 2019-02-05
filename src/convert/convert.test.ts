@@ -8,14 +8,25 @@ describe("Convert text to JSON", () => {
     expect(
       convert(`
 a
-  b`),
+  b
+`),
     ).toEqual({ a: "b" })
   })
   test("It should return an array", () => {
     expect(
       convert(`
     a
-    b`),
+    b
+`),
     ).toEqual(["a", "b"])
+  })
+  test("It should return an nested object", () => {
+    expect(
+      convert(`
+a
+  b
+    c
+`),
+    ).toEqual({ a: { b: "c" } })
   })
 })
