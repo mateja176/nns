@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lam</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+  </head>
+  <body>
+    <form>
+      <section class="text-section">
+        <textarea
+          class="indentation"
+          name="indentation"
+          cols="30"
+          rows="20"
+          autofocus
+          placeholder="Indentation"
+        ></textarea>
+        <textarea
+          class="json"
+          name="json"
+          cols="30"
+          rows="20"
+          placeholder="JSON"
+          readonly
+        ></textarea>
+      </section>
+      <hr />
+      <input type="submit" value="Transform" class="submit" />
+    </form>
+
+    <script src="./index.ts"></script>
+  </body>
+</html>
