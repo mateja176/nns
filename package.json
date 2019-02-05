@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "parcel src/index.html"
+    "start": "parcel src/index.html",
+    "test": "jest",
+    "test:watch": "jest watch"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +15,10 @@
     "ramda": "^0.26.1"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.0",
     "@types/ramda": "^0.25.47",
-    "parcel-bundler": "^1.11.0"
+    "jest": "^24.1.0",
+    "parcel-bundler": "^1.11.0",
+    "ts-jest": "^23.10.5"
   }
 }
