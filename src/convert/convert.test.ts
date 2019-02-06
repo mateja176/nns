@@ -9,14 +9,15 @@ describe("Convert text to JSON", () => {
       convert(`
 a
   b
-`),
+  `),
     ).toEqual({ a: "b" })
   })
   test("It should return an array", () => {
     expect(
       convert(`
-    a
-    b
+a
+
+b
 `),
     ).toEqual(["a", "b"])
   })
@@ -32,19 +33,21 @@ a
   test("It should return an nested array", () => {
     expect(
       convert(`
-    a
-        b
-`),
+a
+
+  b
+  `),
     ).toEqual(["a", ["b"]])
   })
   test("It should return an array of objects", () => {
     expect(
       convert(`
-    a
-      b
-    c
-      d
-`),
+a
+  b
+
+c
+  d
+  `),
     ).toEqual([{ a: "b" }, { c: "d" }])
   })
 })
