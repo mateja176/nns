@@ -2,7 +2,8 @@ import { dec, inc } from "ramda"
 import convert from "./utils/convert"
 import getIndentationFor from "./utils/getIndentationFor"
 import setValueAndSelection from "./utils/setValueAndSelection"
-import slice from "./utils/slice"
+import sliceFrom from "./utils/sliceFrom"
+import sliceTo from "./utils/sliceTo"
 import splitByNewLine from "./utils/splitByNewLine"
 
 const form = document.querySelector("form") as HTMLFormElement
@@ -16,9 +17,9 @@ indentation.onkeydown = e => {
 
   const { value, selectionStart } = target
 
-  const precedingText = slice(0)(selectionStart)(value)
+  const precedingText = sliceTo(selectionStart)(value)
 
-  const succeedingText = slice(selectionStart)(Infinity)(value)
+  const succeedingText = sliceFrom(selectionStart)(value)
 
   const setValue = setValueAndSelection(e)(target)
 
