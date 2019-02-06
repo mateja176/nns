@@ -1,20 +1,21 @@
 // TODO simplify when tests are complete
 
-import { includes, map, pipe, reduce, startsWith } from "ramda"
-import slice from "../utils/slice"
-import splitByNewLine from "../utils/splitByNewLine"
-import filterEmptyLines from "./utils/filterEmptyLines"
-import flatten from "./utils/flatten"
-import joinByNewLine from "./utils/joinByNewLine"
-import splitByLeadingNonSpaceChar from "./utils/splitByLeadingNonSpaceChar"
-import trimLeadingEmptyLines from "./utils/trimLeadingEmptyLines"
-import trimTrailingEmptyLines from "./utils/trimTrailingEmptyLines"
+import { includes, map, pipe, reduce } from "ramda";
+import { isArray } from "util";
+import slice from "../utils/slice";
+import splitByNewLine from "../utils/splitByNewLine";
+import filterEmptyLines from "./utils/filterEmptyLines";
+import flatten from "./utils/flatten";
+import joinByNewLine from "./utils/joinByNewLine";
+import splitByLeadingNonSpaceChar from "./utils/splitByLeadingNonSpaceChar";
+import trimLeadingEmptyLines from "./utils/trimLeadingEmptyLines";
+import trimTrailingEmptyLines from "./utils/trimTrailingEmptyLines";
 
 const convert = pipe(
   trimLeadingEmptyLines,
   trimTrailingEmptyLines,
   (s: string) => {
-    if (startsWith("    ")(s)) {
+    if (isArray(s)) {
       return toArray(s)
     } else if (includes("\n")(s)) {
       return toObject(s)
