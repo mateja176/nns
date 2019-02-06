@@ -1,1 +1,1 @@
-export default (s: string) => s.replace(/\n(\s*)$/, "")
+export default (s: string) => s.replace(/( *\n)+$/, "")
