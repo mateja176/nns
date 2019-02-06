@@ -1,24 +1,17 @@
-// TODO simplify when tests are complete
-
-import { includes, map, pipe, reduce } from "ramda";
-import { isArray } from "util";
-import slice from "../utils/slice";
-import splitByNewLine from "../utils/splitByNewLine";
-import filterEmptyLines from "./utils/filterEmptyLines";
-import flatten from "./utils/flatten";
-import joinByNewLine from "./utils/joinByNewLine";
-import splitByLeadingNonSpaceChar from "./utils/splitByLeadingNonSpaceChar";
-import trimLeadingEmptyLines from "./utils/trimLeadingEmptyLines";
-import trimTrailingEmptyLines from "./utils/trimTrailingEmptyLines";
+import { includes, map, pipe } from "ramda"
+import isArray from "./utils/isArray"
+import splitKeyAndValue from "./utils/splitKeyAndValue"
+import toArray from "./utils/toArray"
+import toObject from "./utils/toObject"
+import trim from "./utils/trim"
 
 const convert = pipe(
-  trimLeadingEmptyLines,
-  trimTrailingEmptyLines,
+  trim,
   (s: string) => {
     if (isArray(s)) {
-      return toArray(s)
+      return map(convert)(toArray(s))
     } else if (includes("\n")(s)) {
-      return toObject(s)
+      return toObject(convert)(splitKeyAndValue(s))
     } else {
       return s
     }
@@ -26,38 +19,3 @@ const convert = pipe(
 )
 
 export default convert
-
-const toArray = pipe(
-  splitByNewLine,
-  filterEmptyLines,
-  map(slice(4)(Infinity)),
-  joinByNewLine,
-  splitByLeadingNonSpaceChar,
-  map((s: string) => {
-    const [value, ...values] = splitByNewLine(s)
-
-    return [value, joinByNewLine(values)]
-  }),
-  flatten,
-  filterEmptyLines,
-  map(convert),
-)
-
-export const toValue = pipe(
-  map(slice(2)(Infinity)),
-  joinByNewLine,
-  convert,
-)
-
-export const toObject = pipe(
-  splitByLeadingNonSpaceChar,
-  filterEmptyLines,
-  reduce((o, keyAndValue) => {
-    const [key, ...value] = splitByNewLine(keyAndValue)
-
-    return {
-      ...o,
-      [key]: toValue(value),
-    }
-  }, {}),
-)
