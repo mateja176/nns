@@ -37,4 +37,14 @@ a
 `),
     ).toEqual(["a", ["b"]])
   })
+  test("It should return an array of objects", () => {
+    expect(
+      convert(`
+    a
+      b
+    c
+      d
+`),
+    ).toEqual([{ a: "b" }, { c: "d" }])
+  })
 })
