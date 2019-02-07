@@ -30,16 +30,16 @@ a
 `),
     ).toEqual({ a: { b: "c" } })
   })
-  test("It should return an nested array", () => {
+  test("It should interpret a nested array as an object", () => {
     expect(
       convert(`
 a
 
   b
   `),
-    ).toEqual(["a", ["b"]])
+    ).toEqual({ a: "b" })
   })
-  test("It should return an array of objects", () => {
+  test("It should interpret an array of objects as a single object", () => {
     expect(
       convert(`
 a
@@ -48,6 +48,6 @@ a
 c
   d
   `),
-    ).toEqual([{ a: "b" }, { c: "d" }])
+    ).toEqual({ a: "b", c: "d" })
   })
 })
