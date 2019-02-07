@@ -1,7 +1,7 @@
 import { inc, length } from "ramda"
 import convert from "./utils/convert"
-import getIndentationFor from "./utils/getIndentationFor"
-import getLength from "./utils/getLength"
+import getLengthMinusOne from "./utils/getLengthMinusOne"
+import getLineAndIndentation from "./utils/getLineAndIndentation"
 import setValueAndSelection from "./utils/setValueAndSelection"
 import sliceFrom from "./utils/sliceFrom"
 import sliceTo from "./utils/sliceTo"
@@ -36,9 +36,11 @@ indentation.onkeydown = e => {
 
       target.selectionEnd = newSelectionStart
     } else {
-      const indentation = getIndentationFor(getLength(succeedingText))(
-        splitByNewLine(value),
-      )
+      // Would preferably be handled by piping
+      // const indentation = head(match(/^\s+/)(nth(dec(length(splitByNewLine(succeedingText))))(splitByNewLine(value))))
+      const indentation = getLineAndIndentation(
+        getLengthMinusOne(succeedingText),
+      )(splitByNewLine(value))
 
       target.value = `${precedingText}\n${indentation}${succeedingText}`
 
