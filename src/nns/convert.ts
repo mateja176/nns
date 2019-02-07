@@ -1,12 +1,12 @@
 import { includes, map, pipe } from "ramda"
+import filterEmptyLines from "./utils/filterEmptyLines"
 import isObject from "./utils/isObject"
 import splitKeyAndValue from "./utils/splitKeyAndValue"
 import toArray from "./utils/toArray"
 import toObject from "./utils/toObject"
-import trim from "./utils/trim"
 
 const convert = pipe(
-  trim,
+  filterEmptyLines,
   (s: string) => {
     if (isObject(s)) {
       return toObject(convert)(splitKeyAndValue(s))
