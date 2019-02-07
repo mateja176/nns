@@ -1,3 +1,7 @@
-import { any } from "ramda"
+import { any, pipe } from "ramda"
+import splitByNewLine from "../../utils/splitByNewLine"
 
-export default any((s: string) => /^\s/.test(s))
+export default pipe(
+  splitByNewLine,
+  any((s: string) => /^\s/.test(s)),
+)
