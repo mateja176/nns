@@ -1,8 +1,8 @@
 import { includes, map, pipe } from "ramda"
 import filterEmptyLines from "./utils/filterEmptyLines"
 import isObject from "./utils/isObject"
+import splitByLeadingNonSpaceChar from "./utils/splitByLeadingNonSpaceChar"
 import splitKeyAndValue from "./utils/splitKeyAndValue"
-import toArray from "./utils/toArray"
 import toObject from "./utils/toObject"
 
 const convert = pipe(
@@ -11,7 +11,7 @@ const convert = pipe(
     if (isObject(s)) {
       return toObject(convert)(splitKeyAndValue(s))
     } else if (includes("\n")(s)) {
-      return map(convert)(toArray(s))
+      return map(convert)(splitByLeadingNonSpaceChar(s))
     } else {
       return s
     }
