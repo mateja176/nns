@@ -1,5 +1,5 @@
 import { map, pipe } from "ramda"
-import sliceFrom from "../../utils/sliceFrom"
+import sliceFrom from "../../utils/slice/from"
 import joinByNewLine from "./joinByNewLine"
 
 export default pipe(
