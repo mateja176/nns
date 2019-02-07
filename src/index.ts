@@ -1,6 +1,7 @@
-import { dec, inc } from "ramda"
+import { inc, length } from "ramda"
 import convert from "./utils/convert"
 import getIndentationFor from "./utils/getIndentationFor"
+import getLength from "./utils/getLength"
 import setValueAndSelection from "./utils/setValueAndSelection"
 import sliceFrom from "./utils/sliceFrom"
 import sliceTo from "./utils/sliceTo"
@@ -23,23 +24,30 @@ indentation.onkeydown = e => {
 
   const setValue = setValueAndSelection(e)(target)
 
-  switch (key) {
-    case "Tab":
-      setValue(`${precedingText}\t${succeedingText}`)(inc(selectionStart))
-      break
-    case "Enter":
-      const indentation =
-        getIndentationFor(dec(splitByNewLine(succeedingText).length))(
-          splitByNewLine(value),
-        ) || ""
+  if (key === "Tab" || key === "Enter") {
+    e.preventDefault()
 
-      setValue(`${precedingText}\n${indentation}${succeedingText}`)(
-        selectionStart + 1 + indentation.length,
+    if (key === "Tab") {
+      target.value = `${precedingText}\t${succeedingText}`
+
+      const newSelectionStart = inc(selectionStart)
+
+      target.selectionStart = newSelectionStart
+
+      target.selectionEnd = newSelectionStart
+    } else {
+      const indentation = getIndentationFor(getLength(succeedingText))(
+        splitByNewLine(value),
       )
 
-      break
-    default:
-      break
+      target.value = `${precedingText}\n${indentation}${succeedingText}`
+
+      const newSelectionStart = selectionStart + 1 + length(indentation as any)
+
+      target.selectionStart = newSelectionStart
+
+      target.selectionEnd = newSelectionStart
+    }
   }
 }
 
