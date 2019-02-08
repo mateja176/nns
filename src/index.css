@@ -1,3 +1,8 @@
+:root {
+  --shadow: 1px 2px 5px #ccc, -1px 2px 5px #ccc;
+  --border-radius: 4px;
+}
+
 * {
   font-family: Helvetica;
   font-size: 18px;
@@ -6,28 +11,6 @@
 body {
   margin: 20px;
   background: #eee;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #eee;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #bbb;
-}
-
-hr {
-  border: none;
-  border-top: 1px solid #ccc;
 }
 
 input[type="submit"] {
@@ -45,12 +28,11 @@ form {
 }
 
 textarea {
-  display: inline-block;
   resize: none;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
   padding: 15px;
-  box-shadow: 1px 2px 5px #ccc, -1px 2px 5px #ccc;
+  box-shadow: var(--shadow);
 }
 
 .submit {
@@ -58,6 +40,6 @@ textarea {
   background: royalblue;
   color: white;
   padding: 10px 15px;
-  box-shadow: 1px 2px 5px #ccc, -1px 2px 5px #ccc;
-  border-radius: 4px;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
 }
