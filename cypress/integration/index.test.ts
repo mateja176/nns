@@ -19,7 +19,11 @@ describe("NNS Editor", () => {
       .type("hello")
       .should("have.value", "hello")
   })
+  // {tab} not supported yet
   // it("should insert indentation", () => {
   //   cy.get("textarea")
+  //     .first()
+  //     .type("{enter}{tab}world{enter}✔")
+  //     .should("have.value", "hello\n\tworld\n\t✔")
   // })
 })

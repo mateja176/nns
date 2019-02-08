@@ -36,7 +36,7 @@ indentation.onkeydown = e => {
 
       const row = nth(rowNumber)(splitByNewLine(value))
 
-      const indentation = head(match(/^\s*/)(row))
+      const indentation = head(match(/^\t*/)(row))
 
       const indentationLength = length(indentation)
 
