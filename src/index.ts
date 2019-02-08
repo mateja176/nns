@@ -7,9 +7,7 @@ import splitByNewLine from "./utils/splitByNewLine"
 
 const form = document.querySelector("form") as HTMLFormElement
 
-const indentation = document.querySelector(
-  ".indentation",
-) as HTMLTextAreaElement
+const indentation = document.querySelector("textarea") as HTMLTextAreaElement
 
 indentation.onkeydown = e => {
   const { key, target } = e as any
