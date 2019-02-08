@@ -1,7 +1,6 @@
-import { inc, length } from "ramda"
+import { dec, head, inc, length, match, nth } from "ramda"
 import convert from "./utils/convert"
-import getLengthMinusOne from "./utils/getLengthMinusOne"
-import getLineAndIndentation from "./utils/getLineAndIndentation"
+import repeat from "./utils/repeat"
 import sliceFrom from "./utils/slice/from"
 import sliceTo from "./utils/slice/to"
 import splitByNewLine from "./utils/splitByNewLine"
@@ -33,15 +32,19 @@ indentation.onkeydown = e => {
 
       target.selectionEnd = newSelectionStart
     } else {
-      // Would preferably be handled by piping
-      // const indentation = head(match(/^\s+/)(nth(dec(length(splitByNewLine(succeedingText))))(splitByNewLine(value))))
-      const indentation = getLineAndIndentation(
-        getLengthMinusOne(succeedingText),
-      )(splitByNewLine(value))
+      const rowNumber = dec(length(splitByNewLine(precedingText)))
 
-      target.value = `${precedingText}\n${indentation}${succeedingText}`
+      const row = nth(rowNumber)(splitByNewLine(value))
 
-      const newSelectionStart = selectionStart + 1 + length(indentation as any)
+      const indentation = head(match(/^\s*/)(row))
+
+      const indentationLength = length(indentation)
+
+      target.value = `${precedingText}\n${repeat(indentationLength)(
+        "\t",
+      )}${succeedingText}`
+
+      const newSelectionStart = selectionStart + 1 + indentationLength
 
       target.selectionStart = newSelectionStart
 
@@ -63,8 +66,8 @@ form.onsubmit = e => {
   json.value = convert(value)
 }
 
-indentation.value = `Hello
-  World!
-How
-  are
-  you?`
+// indentation.value = `Hello
+//   World!
+// How
+//   are
+//   you?`
