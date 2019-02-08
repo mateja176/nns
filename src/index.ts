@@ -12,7 +12,7 @@ const indentation = document.querySelector("textarea") as HTMLTextAreaElement
 indentation.onkeydown = e => {
   const { key, target } = e as any
 
-  const { value, selectionStart } = target
+  const { value, selectionStart } = target as HTMLTextAreaElement
 
   const precedingText = sliceTo(selectionStart)(value)
 
