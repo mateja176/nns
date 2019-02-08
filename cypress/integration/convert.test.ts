@@ -7,6 +7,7 @@ describe("It should convert text to JSON", () => {
     cy.get("textarea[readonly]")
       .invoke("val")
       .then(val => {
+        // @ts-ignore
         expect(JSON.parse(val)).to.deep.equal({
           Hello: "World!",
           How: ["are", "you?"],
