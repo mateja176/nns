@@ -66,8 +66,8 @@ form.onsubmit = e => {
   json.value = convert(value)
 }
 
-// indentation.value = `Hello
-//   World!
-// How
-//   are
-//   you?`
+indentation.value = `Hello
+  World!
+How
+  are
+  you?`
