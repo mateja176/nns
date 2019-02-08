@@ -15,13 +15,19 @@ body {
 
 input[type="submit"] {
   cursor: pointer;
+  border: none;
+  background: royalblue;
+  color: white;
+  padding: 10px 15px;
+  box-shadow: var(--shadow);
+  border-radius: var(--border-radius);
 }
 
 form {
   display: grid;
 }
 
-.text-section {
+section {
   display: grid;
   grid-auto-flow: column;
   grid-gap: 20px;
@@ -33,13 +39,4 @@ textarea {
   border-radius: var(--border-radius);
   padding: 15px;
   box-shadow: var(--shadow);
-}
-
-.submit {
-  border: none;
-  background: royalblue;
-  color: white;
-  padding: 10px 15px;
-  box-shadow: var(--shadow);
-  border-radius: var(--border-radius);
 }
