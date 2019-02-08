@@ -1,6 +1,7 @@
-import { pipe, trim } from "ramda"
+import { pipe } from "ramda"
 import splitByNewLine from "../../utils/splitByNewLine"
 import joinByNewLine from "./joinByNewLine"
+import trim from "./trim"
 
 export default pipe(
   splitByNewLine,
