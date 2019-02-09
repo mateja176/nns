@@ -9,8 +9,12 @@ const form = document.querySelector("form") as HTMLFormElement
 
 const indentation = document.querySelector("textarea") as HTMLTextAreaElement
 
+const submit = document.querySelector(
+  'input[type="submit"]',
+) as HTMLInputElement
+
 indentation.onkeydown = e => {
-  const { key, target } = e as any
+  const { key, target, ctrlKey } = e as any
 
   const { value, selectionStart } = target as HTMLTextAreaElement
 
@@ -29,6 +33,9 @@ indentation.onkeydown = e => {
       target.selectionStart = newSelectionStart
 
       target.selectionEnd = newSelectionStart
+    } else if (key === "Enter" && ctrlKey) {
+      // form.submit() performs default submit
+      submit.click()
     } else {
       const rowNumber = dec(length(splitByNewLine(precedingText)))
 
