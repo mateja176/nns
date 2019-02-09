@@ -8,10 +8,12 @@ import toObject from "./utils/toObject"
 const convert = pipe(
   filterEmptyLines,
   (s: string) => {
-    if (isArray(s)) {
-      return map(convert)(splitByLeadingNonSpaceChar(s))
-    } else if (includes("\n")(s)) {
-      return toObject(convert)(splitKeyAndValue(s))
+    if (includes("\n")(s)) {
+      if (isArray(s)) {
+        return map(convert)(splitByLeadingNonSpaceChar(s))
+      } else {
+        return toObject(convert)(splitKeyAndValue(s))
+      }
     } else {
       return s
     }
