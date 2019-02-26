@@ -8,7 +8,8 @@
     "test": "jest --testPathIgnorePatterns cypress",
     "test:watch": "npm run test -- --watch",
     "cypress:open": "cypress open",
-    "compile": "tsc"
+    "compile": "tsc",
+    "build": "parcel build src/index.html --public-url './'"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,7 @@
     "jest": "^24.1.0",
     "parcel-bundler": "^1.11.0",
     "sass": "^1.17.0",
-    "ts-jest": "^23.10.5"
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.3.3333"
   }
 }
