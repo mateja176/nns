@@ -9,7 +9,8 @@
     "test:watch": "npm run test -- --watch",
     "cypress:open": "cypress open",
     "compile": "tsc",
-    "build": "parcel build src/index.html --public-url './'"
+    "build": "parcel build src/index.html --public-url './'",
+    "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "keywords": [],
   "author": "",
